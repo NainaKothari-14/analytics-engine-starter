@@ -3,8 +3,8 @@
 > A hands-on MongoDB Aggregation Pipeline learning project that transforms transaction data into business insights.
 
 [![MongoDB](https://img.shields.io/badge/MongoDB-Aggregation-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![React](https://img.shields.io/badge/React-Recharts-61DAFB?style=flat&logo=react&logoColor=black)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js%20%7C%20Express-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React%20%7C%20Recharts-61DAFB?style=flat&logo=react&logoColor=black)](https://reactjs.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## What is this?
@@ -61,14 +61,15 @@ git clone https://github.com/NainaKothari-14/analytics-engine-starter.git
 cd analytics-engine-starter
 ```
 
-**2. Install dependencies**
+**2. Install backend dependencies**
 ```bash
+cd analytics-engine-backend
 npm install
 ```
 
 **3. Set up MongoDB**
 
-Make sure MongoDB is running locally, then create a `.env` file:
+Make sure MongoDB is running locally, then create a `.env` file in the `analytics-engine-backend` folder:
 ```env
 MONGO_URI=mongodb://localhost:27017/analytics_engine
 PORT=5000
@@ -80,14 +81,14 @@ node src/utils/seed.js
 ```
 This creates 500 sample cafe transactions across 4 Indian cities (Mumbai, Delhi, Bangalore, Pune) with products like Cold Coffee, Cappuccino, Sandwiches, and more.
 
-**5. Start the server**
+**5. Start the backend server**
 ```bash
 npm run dev
 ```
 
-**6. Start the frontend** (in a new terminal)
+**6. Start the frontend** (in a new terminal, from project root)
 ```bash
-cd client
+cd analytics-engine-frontend
 npm install
 npm run dev
 ```
@@ -166,24 +167,44 @@ This is chart-ready data—no extra processing needed!
 
 ## API Endpoints
 
-All analytics are available via REST API:
+The analytics engine uses a **query-driven API** where you specify the analytics type in the request payload:
 
 ```bash
-# Daily revenue for last 30 days
-GET /api/analytics/revenue/daily
-
-# Monthly revenue trends
-GET /api/analytics/revenue/monthly
-
-# Top 10 selling products
-GET /api/analytics/products/top
-
-# Customer segmentation
-GET /api/analytics/customers/segmentation
-
-# Peak activity hours
-GET /api/analytics/activity/peak-hours
+POST /api/analytics/query
 ```
+
+**Request Body Examples:**
+
+```javascript
+// Daily revenue
+{
+  "queryType": "dailyRevenue",
+  "params": { "days": 30 }
+}
+
+// Monthly revenue
+{
+  "queryType": "monthlyRevenue"
+}
+
+// Top selling products
+{
+  "queryType": "topProducts",
+  "params": { "limit": 10 }
+}
+
+// Customer segmentation
+{
+  "queryType": "customerSegmentation"
+}
+
+// Peak activity hours
+{
+  "queryType": "peakHours"
+}
+```
+
+This unified endpoint approach makes it easier to add new analytics types without creating new routes.
 
 ## What I Learned
 
@@ -238,4 +259,4 @@ GitHub: [@NainaKothari-14](https://github.com/NainaKothari-14)
 
 **Built to learn MongoDB Aggregation Pipelines**
 
-*If this helped you understand aggregations better, consider giving it a star⭐*
+*If this helped you understand aggregations better, consider giving it a star ⭐*
