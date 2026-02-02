@@ -1,0 +1,12 @@
+analytics-engine-backend/
+ ├── src/
+ │   ├── models/
+ │   ├── controllers/
+ │   ├── services/
+ │   ├── routes/
+ │   ├── utils/
+ │   ├── app.js
+ │   └── server.js
+ ├── .env
+ ├── package.json
+ └── node_modules/

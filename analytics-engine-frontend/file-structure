@@ -1,0 +1,13 @@
+analytics-engine-frontend/
+ ├── src/
+ │   ├── components/
+ │   ├── pages/
+ │   │   └── Dashboard.jsx
+ │   ├── services/
+ │   │   └── analytics.api.js
+ │   ├── App.jsx
+ │   ├── main.jsx
+ │   └── index.css
+ ├── tailwind.config.js
+ ├── package.json
+ └── node_modules/
